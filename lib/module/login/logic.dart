@@ -47,8 +47,9 @@ class LoginLogic extends GetxController {
 
   Future<void> checkAuth() async {
     var user = await userCache.getUser();
-    if (user != null || user != UserResponse()) {
+    if ((user?.token ?? "").isNotEmpty || user?.token != null) {
       Get.offNamed(AppRoute.HOME);
+      // Get.offNamed(AppRoute.LOGIN);
     } else {
       Get.offNamed(AppRoute.LOGIN);
     }
